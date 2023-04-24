@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+html{
+    overflow: hidden;
+    min-width: 100vw;
+    height: 100vh;
+}
+img{
+    width: 200px;
+    position: absolute;
+    left: 300;
+    top: 100;
+}
+.underwater-background{
+    background-repeat: no-repeat;
+    position: fixed;
+    height: 100%;
+    width: 120%;
+}
