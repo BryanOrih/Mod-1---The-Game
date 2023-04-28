@@ -1,6 +1,5 @@
 
 let trashBag = new Image()
-console.log(trashBag);
 let sixPackRing = new Image()
 let bottle = new Image()
 bottle.src = "./game_images/waterbottle.png";

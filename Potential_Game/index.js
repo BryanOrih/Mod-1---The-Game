@@ -15,7 +15,6 @@ turtleWidth = 200;
 turtleHeight = 100;
 //SECTION - TURTLE ANIMATION
 const turtle = () =>{
-    ctx.clearRect(0,0,canvas.width, canvas.height)
     x += vxl;
     x += vxr;
     y += vyu;
