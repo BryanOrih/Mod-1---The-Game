@@ -1,7 +1,7 @@
 <h1 align="center">Emily's Journey</h1>
 
 <p align="center">
-  <img src="../game_images/underwater_neutral_turtle-removebg-preview.png" width="300">
+  <img src="./game_images/underwater_neutral_turtle-removebg-preview.png" width="300">
 </p>
 
 <p align="center">
