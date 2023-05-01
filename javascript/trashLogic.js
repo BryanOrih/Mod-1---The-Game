@@ -12,15 +12,15 @@ class TrashObject{
         this.height = height;
         this.x = x;
         this.y = y;
-        this.randomNum = 3
+        // this.randomNum = 5
         //TODO - FIX THIS AFTER TESTING
-        // this.randomNum = Math.floor(Math.random() * (20 - 8 + 1) + 8);
+        this.randomNum = Math.floor(Math.random() * (10 - 8 + 1) + 8);
         this.angle = Math.random() * 360
     }
     startReset(){
-        this.randomNum = 3
+        // this.randomNum = 5
         //TODO - FIX THIS AFTER TESTING
-        // this.randomNum = Math.floor(Math.random() * (20 - 8 + 1) + 8)
+        this.randomNum = Math.floor(Math.random() * (20 - 8 + 1) + 8)
         this.x = window.innerWidth+130;
         this.y = window.innerHeight - Math.floor(Math.random() * (window.innerHeight - 10 + 1) + 10);
         this.angle = Math.random() * 360
@@ -56,8 +56,9 @@ const toStageTwo = () =>{
     }else{
         turtleInfo.x +=.1
     }
-    turtleInfo.y -= 1
+    turtleInfo.y -= 3.5
     if(turtleInfo.y <= -30){
+        window.location.href = "../html/level2.html";
         cancelAnimationFrame(toStageTwo)
     }
     turtleInfo.rotation(-.5)
@@ -74,9 +75,9 @@ const trash = () =>{
     // trashBagInfo.x < 0 ? trashBagInfo.startReset() : trashBagInfo.drawImage()
     // sixPackRingInfo.x < 0 ? sixPackRingInfo.startReset() : sixPackRingInfo.drawImage()
     //NOTE - CHECK IF GAME OVER
-    // gameOver(turtleInfo, bottleInfo)
-    // gameOver(turtleInfo, trashBagInfo)
-    // gameOver(turtleInfo, sixPackRingInfo)
+    gameOver(turtleInfo, bottleInfo)
+    gameOver(turtleInfo, trashBagInfo)
+    gameOver(turtleInfo, sixPackRingInfo)
 
     if(document.getElementById("timer").textContent == 0){
         sixPackRingInfo.startReset()

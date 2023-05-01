@@ -1,0 +1,37 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+html{
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.container:after {
+    z-index: 1;
+    animation: mist 6s infinite linear;
+    background: url("../game_images/download.png");
+    background-size: cover;
+    background-repeat: round;
+    content: "";
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  }
+  
+  @keyframes mist {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 100vh;
+    }
+}
+#canvas{
+    z-index: 2;
+    position: absolute;
+}

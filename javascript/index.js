@@ -1,7 +1,7 @@
 const readySetGo = document.querySelector(".readyGo")
 
 let timer;
-let timeLeft = 5;
+let timeLeft = 20;
 const updateTimer = () =>{
     timeLeft = timeLeft - 1;
     if(timeLeft >= 0)
@@ -23,7 +23,7 @@ ctx.canvas.width  = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 maxWidthBorder = window.innerWidth - 130
-maxHeightBorder = window.innerHeight - 50
+maxHeightBorder = window.innerHeight - 80
 
 let Turtle = new Image()
 Turtle.src = "../game_images/underwater_neutral_turtle-removebg-preview.png";
@@ -83,13 +83,13 @@ const turtle = () =>{
     turtleInfo.y += vyd;
 
     //NOTE - CONTROLS TURTLE UP AND DOWN ANIMATION
-    if(vxr == 5 && vyd == 5 || vyd == 5){
+    if(vxr == 8 && vyd == 8 || vyd == 8){
 
-        turtleInfo.rotation(.5)
+        turtleInfo.rotation(.8)
             
-    }else if(vxr == 5 && vyu == -5 || vyu == -5 ){
+    }else if(vxr == 8 && vyu == -8 || vyu == -8 ){
 
-        turtleInfo.rotation(-.5)
+        turtleInfo.rotation(-.8)
 
     }else{
 
@@ -110,16 +110,16 @@ turtle()
 //SECTION - TURTLE MOVEMENT
 addEventListener('keydown', function(e){
     if(e.code == 'ArrowRight'){
-        vxr = 5 
+        vxr = 8 
     } 
     if(e.code == 'ArrowLeft'){
-        vxl = -5
+        vxl = -8
     } 
     if(e.code == 'ArrowUp'){
-        vyu = -5
+        vyu = -8
     } 
     if(e.code == 'ArrowDown'){
-        vyd = 5
+        vyd = 8
     } 
 })
 addEventListener('keyup', function(e){
@@ -131,13 +131,14 @@ addEventListener('keyup', function(e){
 
 
 const startGame = async() =>{
-    await delay(1500)
+    await delay(1800)
     readySetGo.textContent = "Set"
-    await delay(1500)
+    await delay(1800)
     readySetGo.textContent = "Go"
-    await delay(1500)
+    await delay(1800)
     readySetGo.style.visibility = "hidden"
     document.querySelector(".timer").style.visibility = "visible"
+    document.getElementById("timer").textContent = timeLeft;    
     startTimer()
     await delay(1000)
     trash()
