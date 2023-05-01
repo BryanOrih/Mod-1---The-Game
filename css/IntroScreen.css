@@ -25,6 +25,7 @@ div{
     grid-template-rows: 1fr 1fr;
     margin-left: 20px;
     margin-right: 20px;
+    top: 37px;
 }
 .story{
     font-family: cursive;
@@ -37,7 +38,7 @@ div{
 }
 .turtle{
     position: absolute;
-    top: 40vh;
+    top: 46vh;
     left: 46vw;
-    width: 77vw;
+    width: 160vh;
 }

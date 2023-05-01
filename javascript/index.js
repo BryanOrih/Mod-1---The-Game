@@ -1,7 +1,7 @@
-let timer;
-let timeLeft = 20;
-document.getElementById("timer").textContent = timeLeft;
+const readySetGo = document.querySelector(".readyGo")
 
+let timer;
+let timeLeft = 5;
 const updateTimer = () =>{
     timeLeft = timeLeft - 1;
     if(timeLeft >= 0)
@@ -11,12 +11,9 @@ const updateTimer = () =>{
     }
 }
 
-
-const start = () => {
+const startTimer = () => {
     timer = setInterval(updateTimer, 1000);
 }
-//FIXME - MAKE THIS A BUTTON FOR THE BEGINNING HTML PAGE
-start()
 
 
 const canvas = document.getElementById("canvas")
@@ -25,6 +22,8 @@ const ctx = canvas.getContext("2d")
 ctx.canvas.width  = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
+maxWidthBorder = window.innerWidth - 130
+maxHeightBorder = window.innerHeight - 50
 
 let Turtle = new Image()
 Turtle.src = "../game_images/underwater_neutral_turtle-removebg-preview.png";
@@ -44,48 +43,40 @@ class player {
         this.height = height;
         this.x = x;
         this.y = y;
-        // this.vxl = 0;
-        // this.vxr = 0;
-        // this.vyu = 0;
-        // this.vyd = 0;
     }
     drawImg(){
-        ctx.beginPath(); 
-        ctx.strokeStyle = '#f00';  // some color/style
-        ctx.lineWidth = 2
+        // ctx.beginPath(); 
+        // ctx.strokeStyle = '#f00';  // some color/style
+        // ctx.lineWidth = 2
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
-        ctx.strokeRect(this.x, this.y, this.width, this.height);
+        // ctx.strokeRect(this.x, this.y, this.width, this.height);
     }
     rotation(angle){
         ctx.save();
-        ctx.beginPath(); 
-        ctx.strokeStyle = '#f00';  // some color/style
-        ctx.lineWidth = 2
+        // ctx.beginPath(); 
+        // ctx.strokeStyle = '#f00';  // some color/style
+        // ctx.lineWidth = 2
         ctx.translate(this.x, this.y); 
         ctx.rotate(angle); 
         ctx.drawImage(this.image, 0, 0, this.width, this.height);
-        ctx.strokeRect( 0, 0    , this.width, this.height);
+        // ctx.strokeRect( 0, 0 , this.width, this.height);
         ctx.restore()
     }
 }
 let turtleInfo = new player(Turtle, 200,100, x, y)
-// turtleInfo.width = 200;
-// turtleInfo.height = 100;
-maxWidthBorder = window.innerWidth - 100
-maxHeightBorder = window.innerHeight - 50
 //SECTION - TURTLE ANIMATION
 const turtle = () =>{
+        if(turtleInfo.x < -100){
+            turtleInfo.x= -100
+        }else if(turtleInfo.x > maxWidthBorder){
+            turtleInfo.x = maxWidthBorder
+        }
+        if(turtleInfo.y < -30){
+            turtleInfo.y = -30
+        } else if(turtleInfo.y > maxHeightBorder){
+            turtleInfo.y = maxHeightBorder
+        }
     ctx.clearRect(0,0,canvas.width, canvas.height)
-    if(x < -100){
-        x= -100
-    }else if(x > maxWidthBorder){
-        x = maxWidthBorder
-    }
-    if(y < -30){
-        y = -30
-    } else if(y > maxHeightBorder){
-        y = maxHeightBorder
-    }
     turtleInfo.x += vxl;
     turtleInfo.x += vxr;
     turtleInfo.y += vyu;
@@ -105,8 +96,14 @@ const turtle = () =>{
         turtleInfo.drawImg()
         
     }
-    requestAnimationFrame(turtle)
-    
+    switch (timeLeft){
+        case 0:
+            cancelAnimationFrame(turtle)
+            break;
+        default:
+            requestAnimationFrame(turtle) 
+            break; 
+    }
 }
 turtle()
 
@@ -133,7 +130,21 @@ addEventListener('keyup', function(e){
 })
 
 
+const startGame = async() =>{
+    await delay(1500)
+    readySetGo.textContent = "Set"
+    await delay(1500)
+    readySetGo.textContent = "Go"
+    await delay(1500)
+    readySetGo.style.visibility = "hidden"
+    document.querySelector(".timer").style.visibility = "visible"
+    startTimer()
+    await delay(1000)
+    trash()
+}
 
-
+const delay = ms => new Promise(res => setTimeout(res, ms));
+turtle()
+startGame()
 
 

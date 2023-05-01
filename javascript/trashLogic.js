@@ -5,7 +5,6 @@ let bottle = new Image()
 bottle.src = "../game_images/waterbottle.png";
 trashBag.src = "../game_images/TrashBag.png";
 sixPackRing.src = "../game_images/sixPackRing.png";
-
 class TrashObject{
     constructor(image,width,height,x,y){
         this.image = image
@@ -22,20 +21,20 @@ class TrashObject{
         this.randomNum = 3
         //TODO - FIX THIS AFTER TESTING
         // this.randomNum = Math.floor(Math.random() * (20 - 8 + 1) + 8)
-        this.x = window.innerWidth+100;
+        this.x = window.innerWidth+130;
         this.y = window.innerHeight - Math.floor(Math.random() * (window.innerHeight - 10 + 1) + 10);
         this.angle = Math.random() * 360
     }
     drawImage(){
         ctx.save();
-        ctx.beginPath(); 
-        ctx.strokeStyle = '#f00';  // some color/style
-        ctx.lineWidth = 2;  
+        // ctx.beginPath(); 
+        // ctx.strokeStyle = '#f00';  // some color/style
+        // ctx.lineWidth = 2;  
         this.x -= this.randomNum
         ctx.translate(this.x, this.y)
         ctx.rotate(this.angle* Math.PI/360); 
         ctx.drawImage(this.image, 0,0, this.width, this.height)
-        ctx.strokeRect(0,0, this.width, this.height);
+        // ctx.strokeRect(0,0, this.width, this.height);
         ctx.restore()
     }
 }
@@ -44,19 +43,53 @@ console.log(window.innerHeight);
 let bottleInfo = new TrashObject(bottle, 80, 150, window.innerWidth+10, window.innerHeight - Math.floor(Math.random() * (1000 - 10 + 1) + 200))
 let trashBagInfo = new TrashObject(trashBag, 100, 120, window.innerWidth+10, window.innerHeight - Math.floor(Math.random() * (1000 - 10 + 1) + 200))
 let sixPackRingInfo = new TrashObject(sixPackRing, 150, 120, window.innerWidth+10, window.innerHeight - Math.floor(Math.random() * (1000 - 10 + 1) + 200))
+
+//NOTE - LOOP AND TOSTAGETWO ARE THE CUT SCENES FUNCTIONS FOR THE NEXT STAGE
+let loop = false
+const toStageTwo = () =>{
+    ctx.clearRect(0,0,canvas.width, canvas.height)
+    if(turtleInfo.x < 650 || loop === true){
+        loop = true
+        turtleInfo.x++
+    }else if (turtleInfo.x < 900){
+        turtleInfo.x+=.5
+    }else{
+        turtleInfo.x +=.1
+    }
+    turtleInfo.y -= 1
+    if(turtleInfo.y <= -30){
+        cancelAnimationFrame(toStageTwo)
+    }
+    turtleInfo.rotation(-.5)
+    requestAnimationFrame(toStageTwo) 
+}
+
+
 //SECTION - TRASH FUNCTIONALITY
 const trash = () =>{
 
     //NOTE - IF AT END THEN RESET TO THE BEGINNING WITH RANDOM ROTATION & Y POSITION
     //ELSE JUST KEEP GOING INTO THAT DIRECTION
-    bottleInfo.x < 0 ?  bottleInfo.startReset() : bottleInfo.drawImage()
-    trashBagInfo.x < 0 ? trashBagInfo.startReset() : trashBagInfo.drawImage()
-    sixPackRingInfo.x < 0 ? sixPackRingInfo.startReset() : sixPackRingInfo.drawImage()
+    // bottleInfo.x < 0 ?  bottleInfo.startReset() : bottleInfo.drawImage()
+    // trashBagInfo.x < 0 ? trashBagInfo.startReset() : trashBagInfo.drawImage()
+    // sixPackRingInfo.x < 0 ? sixPackRingInfo.startReset() : sixPackRingInfo.drawImage()
     //NOTE - CHECK IF GAME OVER
     // gameOver(turtleInfo, bottleInfo)
     // gameOver(turtleInfo, trashBagInfo)
     // gameOver(turtleInfo, sixPackRingInfo)
-    requestAnimationFrame(trash)
+
+    if(document.getElementById("timer").textContent == 0){
+        sixPackRingInfo.startReset()
+        trashBagInfo.startReset()
+        bottleInfo.startReset()
+        toStageTwo()
+        cancelAnimationFrame(trash)
+    }else{
+        bottleInfo.x < 0 ?  bottleInfo.startReset() : bottleInfo.drawImage()
+        trashBagInfo.x < 0 ? trashBagInfo.startReset() : trashBagInfo.drawImage()
+        sixPackRingInfo.x < 0 ? sixPackRingInfo.startReset() : sixPackRingInfo.drawImage()
+        requestAnimationFrame(trash)    
+    }
 }
 
 //SECTION - GAME OVER FUNCTION
@@ -81,5 +114,3 @@ const gameOver = (object1, object2) =>{
 
 
 }
-
-trash()

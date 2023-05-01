@@ -14,17 +14,29 @@ img{
     left: 300;
     top: 100;
 }
-.underwater-background{
+body {
+    background-image: url("../game_images/background_1.png");
+    animation: moveIt 20s linear infinite;
+    animation-delay: 3s;
+    background-repeat: no-repeat;
+    animation-duration: 25s;
+    background-size: 115vw;
+  }
+/* .underwater-background{
     background-repeat: no-repeat;
     position: fixed;
     height: 100%;
     width: 120%;
-    filter:blur(1.5px)
-}
+    filter:blur(1.5px);
+} */
+@keyframes moveIt {
+    from {background-position: left;}
+    to {background-position: right;}
+  }
 #canvas{
     position: absolute;
 }
-p{ 
+.timer{ 
     position: absolute;
     font-size: 1.5em;
     left: auto;
@@ -34,9 +46,105 @@ p{
     background-color: lightblue;
     border-radius: 6px;
     padding: 2vh 4vh;
+    background: linear-gradient(to top, lightblue, #649cd0);
+    visibility: hidden;
+    box-shadow:   0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
 }
 span{
     background-color: #d6eae8;
     padding: 0px 9px;
     border-radius: 7px;
 }
+/*THIS IS JUST FOR THE BEGINNING OF THE GAME */
+.readyGo{
+    transition:	margin .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+    font-family: cursive;
+    background-color: lightblue;
+    border-radius: 6px;
+    padding: 2vh 4vh;
+    font-size: 3em;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%;
+    background: linear-gradient(to top, lightblue, #0075DC);
+    box-shadow:   0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+}
+
+
+@keyframes shadow {
+    0% {
+      opacity: 0;
+      transform: scaleX(1);
+      width: 1px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+    }
+    10% {
+      opacity: 1;
+      transform: scaleX(1);
+      transform: translateX(50px);
+      width: 210px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+    }
+    30% {
+      opacity: 0;
+      transform: scaleX(1);
+      transform: translateX(260px);
+      width: 1px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+    } 
+    100% {
+      opacity: 0;
+      transform: scaleX(1);
+      transform: translateX(260px);
+      width: 1px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+    }
+  }
+  
+  @keyframes shadow2 {
+      0% {
+      opacity: 0;
+      transform: scaleX(1);
+      width: 1px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+    }
+      10% {
+      opacity: 0;
+      transform: scaleX(1);
+      width: 1px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+    }
+    20% {
+      opacity: 1;
+      transform: scaleX(1);
+      transform: translateX(50px);
+      width: 210px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+    }
+    40% {
+      opacity: 0;
+      transform: scaleX(1);
+      transform: translateX(50px);
+      width: 210px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+    }
+    100% {
+      opacity: 0;
+      transform: scaleX(1);
+      transform: translateX(260px);
+      width: 1px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+    } 
+  }
+  
