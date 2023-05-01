@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+html{
+    overflow: hidden;
+}
+
+.underwater-background{
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 120%;
+    /* filter:blur(1.5px) */
+    filter: brightness(70%);
+}
+div{
+    color: #efefef;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.story{
+    font-family: cursive;
+    grid-column: span 2;
+    font-size: 2.5em;
+}
+.instructions{
+    font-family: cursive;
+    font-size: 2.5em;
+}
+.turtle{
+    position: absolute;
+    top: 40vh;
+    left: 46vw;
+    width: 77vw;
+}
