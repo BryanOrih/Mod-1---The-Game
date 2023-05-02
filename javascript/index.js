@@ -1,5 +1,6 @@
 const readySetGo = document.querySelector(".readyGo")
-
+const percentWidth = (percentage) =>{return window.innerWidth/100 * percentage}
+const percentHeight = (percentage) =>{return window.innerHeight/100 * percentage}
 let timer;
 let timeLeft = 20;
 const updateTimer = () =>{
@@ -83,11 +84,11 @@ const turtle = () =>{
     turtleInfo.y += vyd;
 
     //NOTE - CONTROLS TURTLE UP AND DOWN ANIMATION
-    if(vxr == 8 && vyd == 8 || vyd == 8){
+    if(vxr !=0 && vyd !=0 || vyd !=0){
 
         turtleInfo.rotation(.8)
             
-    }else if(vxr == 8 && vyu == -8 || vyu == -8 ){
+    }else if(vxr !=0 && vyu !=0 || vyu !=0 ){
 
         turtleInfo.rotation(-.8)
 
@@ -110,16 +111,16 @@ turtle()
 //SECTION - TURTLE MOVEMENT
 addEventListener('keydown', function(e){
     if(e.code == 'ArrowRight'){
-        vxr = 8 
+        vxr =  percentWidth(.2)
     } 
     if(e.code == 'ArrowLeft'){
-        vxl = -8
+        vxl = percentWidth(-.2)
     } 
     if(e.code == 'ArrowUp'){
-        vyu = -8
+        vyu = percentHeight(-.2)
     } 
     if(e.code == 'ArrowDown'){
-        vyd = 8
+        vyd = percentHeight(.2)
     } 
 })
 addEventListener('keyup', function(e){

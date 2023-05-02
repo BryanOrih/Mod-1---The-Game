@@ -5,6 +5,24 @@ let bottle = new Image()
 bottle.src = "../game_images/waterbottle.png";
 trashBag.src = "../game_images/TrashBag.png";
 sixPackRing.src = "../game_images/sixPackRing.png";
+// console.log(bottle);
+const level1Trash = [
+    {
+        image: new Image(),
+        src:"../game_images/waterbottle.png",
+        x:80,
+        y:150},
+    {
+        image: new Image(),
+        src:"../game_images/TrashBag.png",
+        x:100,
+        y:120},
+    {
+        image: new Image(),
+        src:"../game_images/sixPackRing.png",
+        x:150,
+        y:120}
+]
 class TrashObject{
     constructor(image,width,height,x,y){
         this.image = image
@@ -27,18 +45,34 @@ class TrashObject{
     }
     drawImage(){
         ctx.save();
-        // ctx.beginPath(); 
-        // ctx.strokeStyle = '#f00';  // some color/style
-        // ctx.lineWidth = 2;  
         this.x -= this.randomNum
         ctx.translate(this.x, this.y)
         ctx.rotate(this.angle* Math.PI/360); 
         ctx.drawImage(this.image, 0,0, this.width, this.height)
-        // ctx.strokeRect(0,0, this.width, this.height);
+        ctx.restore()
+    }
+    static startReset(object){
+        // object.image.src = object.src
+        // // console.log(object.image);
+        // ctx.save();
+        // this.x -= this.randomNum
+        // ctx.translate(this.x, this.y)
+        // ctx.rotate(this.angle* Math.PI/360); 
+        // ctx.drawImage(object.image, 0,0, this.width, this.height)
+        // ctx.restore()
+    }
+    static drawImage(object){
+        object.image.src = object.src
+        // console.log(object.image);
+        ctx.save();
+        this.x -= this.randomNum
+        ctx.translate(this.x, this.y)
+        ctx.rotate(this.angle* Math.PI/360); 
+        ctx.drawImage(object.image, 0,0, this.width, this.height)
         ctx.restore()
     }
 }
-console.log(window.innerHeight);
+TrashObject.startReset(level1Trash[0])
 //NOTE - TRASH INFO CREATION
 let bottleInfo = new TrashObject(bottle, 80, 150, window.innerWidth+10, window.innerHeight - Math.floor(Math.random() * (1000 - 10 + 1) + 200))
 let trashBagInfo = new TrashObject(trashBag, 100, 120, window.innerWidth+10, window.innerHeight - Math.floor(Math.random() * (1000 - 10 + 1) + 200))
@@ -75,9 +109,9 @@ const trash = () =>{
     // trashBagInfo.x < 0 ? trashBagInfo.startReset() : trashBagInfo.drawImage()
     // sixPackRingInfo.x < 0 ? sixPackRingInfo.startReset() : sixPackRingInfo.drawImage()
     //NOTE - CHECK IF GAME OVER
-    gameOver(turtleInfo, bottleInfo)
-    gameOver(turtleInfo, trashBagInfo)
-    gameOver(turtleInfo, sixPackRingInfo)
+    // gameOver(turtleInfo, bottleInfo)
+    // gameOver(turtleInfo, trashBagInfo)
+    // gameOver(turtleInfo, sixPackRingInfo)
 
     if(document.getElementById("timer").textContent == 0){
         sixPackRingInfo.startReset()
@@ -86,6 +120,7 @@ const trash = () =>{
         toStageTwo()
         cancelAnimationFrame(trash)
     }else{
+
         bottleInfo.x < 0 ?  bottleInfo.startReset() : bottleInfo.drawImage()
         trashBagInfo.x < 0 ? trashBagInfo.startReset() : trashBagInfo.drawImage()
         sixPackRingInfo.x < 0 ? sixPackRingInfo.startReset() : sixPackRingInfo.drawImage()
