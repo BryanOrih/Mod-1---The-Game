@@ -32,13 +32,13 @@ class TrashObject{
         this.y = y;
         // this.randomNum = 5
         //TODO - FIX THIS AFTER TESTING
-        this.randomNum = Math.floor(Math.random() * (10 - 8 + 1) + 8);
+        this.randomNum = Math.floor(Math.random() * (3 - 8 + 1) + 8);
         this.angle = Math.random() * 360
     }
     startReset(){
         // this.randomNum = 5
         //TODO - FIX THIS AFTER TESTING
-        this.randomNum = Math.floor(Math.random() * (20 - 8 + 1) + 8)
+        this.randomNum = Math.floor(Math.random() * (3 - 8 + 1) + 8)
         this.x = window.innerWidth+130;
         this.y = window.innerHeight - Math.floor(Math.random() * (window.innerHeight - 10 + 1) + 10);
         this.angle = Math.random() * 360
@@ -145,7 +145,7 @@ const gameOver = (object1, object2) =>{
     if (right1 < left2) return(false);
     if (left1 > right2) return(false);
     location.reload()
-    // document.querySelector('body').innerHTML = "Game Over"
+    document.querySelector('body').innerHTML = "Game Over"
 
 
 
