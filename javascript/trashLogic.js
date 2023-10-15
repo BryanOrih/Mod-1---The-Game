@@ -109,9 +109,9 @@ const trash = () =>{
     // trashBagInfo.x < 0 ? trashBagInfo.startReset() : trashBagInfo.drawImage()
     // sixPackRingInfo.x < 0 ? sixPackRingInfo.startReset() : sixPackRingInfo.drawImage()
     //NOTE - CHECK IF GAME OVER
-    // gameOver(turtleInfo, bottleInfo)
-    // gameOver(turtleInfo, trashBagInfo)
-    // gameOver(turtleInfo, sixPackRingInfo)
+    gameOver(turtleInfo, bottleInfo)
+    gameOver(turtleInfo, trashBagInfo)
+    gameOver(turtleInfo, sixPackRingInfo)
 
     if(document.getElementById("timer").textContent == 0){
         sixPackRingInfo.startReset()
