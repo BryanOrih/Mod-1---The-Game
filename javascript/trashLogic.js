@@ -144,7 +144,6 @@ const gameOver = (object1, object2) =>{
 
     if (right1 < left2) return(false);
     if (left1 > right2) return(false);
-    location.reload()
     document.querySelector('body').innerHTML = "Game Over"
 
 
